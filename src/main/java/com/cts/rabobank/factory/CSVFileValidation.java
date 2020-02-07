@@ -5,6 +5,7 @@ import com.cts.rabobank.model.RequestRecord;
 import com.opencsv.CSVReader;
 import com.opencsv.bean.ColumnPositionMappingStrategy;
 import com.opencsv.bean.CsvToBean;
+import com.opencsv.bean.HeaderColumnNameTranslateMappingStrategy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -13,7 +14,9 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.FileReader;
 import java.io.InputStreamReader;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Component
 public class CSVFileValidation implements FileValidation {
@@ -23,10 +26,20 @@ public class CSVFileValidation implements FileValidation {
         LOGGER.debug("Processing CSVFileValidation Inside");
         List<RequestRecord> recordList=null;
         try {
-            CSVReader reader = new CSVReader(new InputStreamReader(multipartFile.getInputStream()), ',');
-            ColumnPositionMappingStrategy<RequestRecord> beanStrategy = new ColumnPositionMappingStrategy<RequestRecord>();
-            beanStrategy.setType(RequestRecord.class);
-            beanStrategy.setColumnMapping(new String[]{"Reference", "Account Number", "Description", "Start Balance", "Mutation", "End Balance"});
+            CSVReader reader = new CSVReader(new InputStreamReader(multipartFile.getInputStream()));
+            HeaderColumnNameTranslateMappingStrategy<RequestRecord> beanStrategy = new HeaderColumnNameTranslateMappingStrategy<RequestRecord>();
+             beanStrategy.setType(RequestRecord.class);
+
+            Map<String, String> columnMapping = new HashMap<>();
+            columnMapping.put("Reference", "transactionRef");
+            columnMapping.put("Account Number", "accountNumber");
+            columnMapping.put("Description", "description");
+            columnMapping.put("Start Balance", "startBalance");
+            columnMapping.put("Mutation", "mutation");
+            columnMapping.put("End Balance", "endBalance");
+
+
+            beanStrategy.setColumnMapping(columnMapping);
 
             CsvToBean<RequestRecord> csvToBean = new CsvToBean<RequestRecord>();
 
