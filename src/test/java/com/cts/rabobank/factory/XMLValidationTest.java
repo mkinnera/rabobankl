@@ -1,6 +1,8 @@
 package com.cts.rabobank.factory;
 
 import com.cts.rabobank.exception.RecordParseException;
+import com.cts.rabobank.model.RequestRecord;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.List;
 
 import static org.mockito.Mockito.when;
 
@@ -37,7 +40,8 @@ public class XMLValidationTest {
         InputStream is = new FileInputStream(csvFile);
         MockMultipartFile multipartFile = new MockMultipartFile("xml", "records.xml", "text/xml", is);
         is.close();
-        xmlValidation.processFile(multipartFile);
+        List<RequestRecord> list=xmlValidation.processFile(multipartFile);
+        Assert.assertEquals(10,list.size());
 
     }
 }

@@ -3,6 +3,8 @@ package com.cts.rabobank.controller;
 import static org.mockito.Mockito.when;
 
 import com.cts.rabobank.factory.FileValidationFactory;
+import com.cts.rabobank.model.RequestRecord;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,6 +23,7 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 
 @RunWith(MockitoJUnitRunner.class)
 public class CustomerStatementControllerTest {
@@ -48,7 +51,10 @@ public class CustomerStatementControllerTest {
             InputStream is = new FileInputStream(csvFile);
             MockMultipartFile multipartFile = new MockMultipartFile("csv", "records.csv", "text/csv", is);
             is.close();
-            customerStatementController.customerStatementProcessor(multipartFile);
+
+            List<RequestRecord> list=customerStatementController.customerStatementProcessor(multipartFile);
+
+
         }catch (Exception e) {
 
         }
