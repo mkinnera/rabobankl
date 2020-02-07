@@ -25,6 +25,5 @@ public class CSVValidationTest {
     public void processTest() {
         String contentType = "text/csv";
         csvFileValidation.processFile(multipartFile);
-
     }
 }
