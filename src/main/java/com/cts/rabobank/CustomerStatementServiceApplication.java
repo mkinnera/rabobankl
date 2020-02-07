@@ -1,4 +1,4 @@
-package com.cts.customer_statement;
+package com.cts.rabobank;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

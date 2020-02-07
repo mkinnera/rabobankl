@@ -7,9 +7,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.cts</groupId>
-    <artifactId>customer_statement_service</artifactId>
+    <artifactId>rabobank</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>customer_statement_service</name>
+    <name>rabobank</name>
     <description>Statement Project Spring Boot</description>
 
     <properties>

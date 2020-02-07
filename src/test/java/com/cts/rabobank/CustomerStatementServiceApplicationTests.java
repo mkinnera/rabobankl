@@ -1,4 +1,4 @@
-package com.cts.customer_statement_service;
+package com.cts.rabobank;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

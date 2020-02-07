@@ -1,4 +1,4 @@
-package com.cts.customer_statement.controller;
+package com.cts.rabobank.controller;
 
 
 import org.slf4j.Logger;
@@ -13,11 +13,12 @@ public class CustomerStatementController {
     private static final Logger LOGGER = LoggerFactory.getLogger(CustomerStatementController.class);
 
     @GetMapping("/upload")
-    public String customerStatementProcessor(@RequestParam MultipartFile multipartFile){
+    public String customerStatementProcessor(@RequestParam("file") MultipartFile multipartFile){
 
         if(multipartFile!=null){
             String contentType= multipartFile.getContentType();
             LOGGER.info("contentType{}",contentType);
+            //if(contentType.)
         }
 
       return "testing";

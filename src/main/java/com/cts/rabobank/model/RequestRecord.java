@@ -1,4 +1,4 @@
-package com.cts.customer_statement.model;
+package com.cts.rabobank.model;
 
 public class RequestRecord {
 

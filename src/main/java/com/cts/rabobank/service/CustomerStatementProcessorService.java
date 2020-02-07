@@ -1,4 +1,4 @@
-package com.cts.customer_statement.service;
+package com.cts.rabobank.service;
 
 import org.springframework.stereotype.Service;
 
