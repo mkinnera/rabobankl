@@ -18,10 +18,14 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.web.multipart.MultipartFile;
+@RunWith(MockitoJUnitRunner.class)
+public class CustomerStatementControllerTest {
 
-class TestCustomerStatementProcessorService {
+public CustomerStatementControllerTest(){
 
+}
     @InjectMocks
     CustomerStatementProcessorService customerStatementProcessorService;
 
@@ -35,14 +39,10 @@ class TestCustomerStatementProcessorService {
 
     @Test
     public void getAllEmployeesTest() {
-//        MultipartFile multipartFile=null;
-//        String contentType = "text/csv"
-//        when(fileValidationFactory.processFile(multipartFile,contentType)).thenReturn(null);
-//        process
-//        //test
-//        List<EmployeeVO> empList = manager.getEmployeeList();
-//
-//        assertEquals(3, empList.size());
-//        verify(dao, times(1)).getEmployeeList();
+        MultipartFile multipartFile=null;
+        String contentType = "text/csv";
+        when(fileValidationFactory.processFile(multipartFile,contentType)).thenReturn(null);
+        customerStatementProcessorService.process(multipartFile,contentType);
+
     }
 }

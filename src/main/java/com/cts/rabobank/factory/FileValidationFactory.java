@@ -26,7 +26,9 @@ public class FileValidationFactory {
             fileValidation=new XMLValidation();
         }
         if(fileValidation!=null) {
-            recordList = generateReport(fileValidation.processFile(multipartFile));
+          //  recordList = generateReport(fileValidation.processFile(multipartFile));
+            recordList = fileValidation.processFile(multipartFile);
+
         }
         return recordList;
     }
