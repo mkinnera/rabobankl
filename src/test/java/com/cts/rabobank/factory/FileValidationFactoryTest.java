@@ -42,8 +42,13 @@ public class FileValidationFactoryTest {
 
     }
     @Test
-    public void processTestForcsv() {
+    public void processTestForcsv()throws Exception {
         String contentType = "text/csv";
-        fileValidationFactory.processFile(multipartFile, contentType);
+        File csvFile = new File(this.getClass().getResource("/records.csv").getFile());
+        InputStream is = new FileInputStream(csvFile);
+        MockMultipartFile multipartFile = new MockMultipartFile("csv", "records.csv", "text/csv", is);
+        is.close();
+        List<RequestRecord> list=fileValidationFactory.processFile(multipartFile, contentType);
+        Assert.assertEquals(2,list.size());
     }
 }
