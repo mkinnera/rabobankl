@@ -13,7 +13,7 @@ import java.util.List;
 public class CustomerStatementProcessorService {
     @Autowired
     FileValidationFactory fileValidationFactory;
-    public List<RequestRecord> process(MultipartFile multipartFile, String contentType) {
+    public List<RequestRecord> process(MultipartFile multipartFile, String contentType){
         return fileValidationFactory.processFile(multipartFile,contentType);
     }
 }

@@ -8,5 +8,5 @@ import java.util.List;
 
 
 public interface FileValidation {
-   public List<RequestRecord> processFile(MultipartFile multipartFile)throws Exception;
+   public List<RequestRecord> processFile(MultipartFile multipartFile);
 }

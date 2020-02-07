@@ -19,22 +19,24 @@ import java.util.List;
 public class CSVFileValidation implements FileValidation {
     private static final Logger LOGGER = LoggerFactory.getLogger(CSVFileValidation.class);
 
-    public List<RequestRecord> processFile(MultipartFile multipartFile) throws Exception{
+    public List<RequestRecord> processFile(MultipartFile multipartFile){
         LOGGER.debug("Processing CSVFileValidation Inside");
         List<RequestRecord> recordList=null;
+        try {
+            CSVReader reader = new CSVReader(new InputStreamReader(multipartFile.getInputStream()), ',');
+            ColumnPositionMappingStrategy<RequestRecord> beanStrategy = new ColumnPositionMappingStrategy<RequestRecord>();
+            beanStrategy.setType(RequestRecord.class);
+            beanStrategy.setColumnMapping(new String[]{"Reference", "Account Number", "Description", "Start Balance", "Mutation", "End Balance"});
 
-        CSVReader reader = new CSVReader(new InputStreamReader(multipartFile.getInputStream()), ',');
-        ColumnPositionMappingStrategy<RequestRecord> beanStrategy = new ColumnPositionMappingStrategy<RequestRecord>();
-        beanStrategy.setType(RequestRecord.class);
-        beanStrategy.setColumnMapping(new String[] {"Reference","Account Number","Description","Start Balance","Mutation","End Balance"});
+            CsvToBean<RequestRecord> csvToBean = new CsvToBean<RequestRecord>();
 
-        CsvToBean<RequestRecord> csvToBean = new CsvToBean<RequestRecord>();
+            recordList = csvToBean.parse(beanStrategy, reader);
 
-        List<RequestRecord> records = csvToBean.parse(beanStrategy, reader);
+            System.out.println(recordList);
+        }catch(Exception e){
 
-        System.out.println(records);
-
-        return records;
+        }
+        return recordList;
     }
 }
 

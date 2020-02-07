@@ -7,7 +7,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Component
 public class FileValidationFactory {
@@ -23,12 +26,16 @@ public class FileValidationFactory {
             fileValidation=new XMLValidation();
         }
         if(fileValidation!=null) {
-            recordList = fileValidation.processFile(multipartFile);
+            recordList = generateReport(fileValidation.processFile(multipartFile));
         }
         return recordList;
     }
 
 
-
+    private static List<RequestRecord> generateReport(List<RequestRecord> faildeRecordList){
+        Set deptSet = new HashSet();
+        faildeRecordList.removeIf(record -> !deptSet.add(record.getTransactionRef()));
+        return faildeRecordList.stream().filter(record-> !record.isValid()).collect(Collectors.toList());
+    }
 
 }
