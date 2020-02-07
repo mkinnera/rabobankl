@@ -27,7 +27,7 @@ public class CustomerStatementController {
             if (contentType != null && (contentType.equals("text/xml") || contentType.equals("text/csv"))) {
                return customerStatementProcessorService.process(multipartFile, contentType);
             } else {
-                throw new RecordException("Invalid file formate exception");
+                throw new RecordException("Invalid file format exception");
             }
         }
         return null;
