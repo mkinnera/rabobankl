@@ -1,4 +1,4 @@
-package com.cts.customer_statement_service.model;
+package com.cts.customer_statement.model;
 
 public class ResponseRecord {
 
