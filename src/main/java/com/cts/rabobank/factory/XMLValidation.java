@@ -15,7 +15,7 @@ import java.util.List;
 @Component
 public class XMLValidation implements FileValidation {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(CSVFileValidation.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(XMLValidation.class);
 
     public List<RequestRecord> processFile(MultipartFile multipartFile){
         List<RequestRecord> recordList=null;
