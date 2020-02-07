@@ -1,6 +1,6 @@
 package com.cts.rabobank.controller;
 
-
+import static org.mockito.Mockito.when;
 import com.cts.rabobank.exception.ResourceNotFoundException;
 import com.cts.rabobank.factory.FileValidationFactory;
 import com.cts.rabobank.model.RequestRecord;
@@ -67,4 +67,19 @@ public class CustomerStatementControllerTest {
 
         }
     }
+
+    @Test(expected = RecordParseException.class)
+    public void invalidFileException() throws Exception{
+        restTemplate.getForEntity(
+                new URL("http://localhost:" + port + "/v1/rabobank").toString(), String.class);
+            File csvFile = new File(this.getClass().getResource("/records.txt").getFile());
+            InputStream is = new FileInputStream(csvFile);
+            MockMultipartFile multipartFile = new MockMultipartFile("txt", "records.txt", "text", is);
+            is.close();
+            List<RequestRecord> list=customerStatementController.customerStatementProcessor(multipartFile);
+
+
+
+    }
+
 }
