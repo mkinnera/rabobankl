@@ -1,5 +1,6 @@
 package com.cts.rabobank.factory;
 
+import com.cts.rabobank.exception.RecordParseException;
 import com.cts.rabobank.model.RequestRecord;
 import com.opencsv.CSVReader;
 import com.opencsv.bean.CsvToBean;
@@ -19,7 +20,7 @@ import java.util.Map;
 public class CSVFileValidation implements FileValidation {
     private static final Logger LOGGER = LoggerFactory.getLogger(CSVFileValidation.class);
 
-    public List<RequestRecord> processFile(MultipartFile multipartFile){
+    public List<RequestRecord> processFile(MultipartFile multipartFile) throws RecordParseException {
         LOGGER.debug("Processing CSVFileValidation Inside");
         List<RequestRecord> recordList=null;
         try {
@@ -52,7 +53,7 @@ public class CSVFileValidation implements FileValidation {
 
         }catch(Exception e){
 
-            //throw new RecordException(e.getMessage());
+            throw new RecordParseException(e.getMessage());
         }
         return recordList;
     }

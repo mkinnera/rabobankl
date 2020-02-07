@@ -36,7 +36,7 @@ public class ExceptionHandlerControllerAdvice
 		return error;
 	}
 
-	@ExceptionHandler(RecordException.class)
+	@ExceptionHandler(RecordParseException.class)
 	@ResponseStatus(value = HttpStatus.NOT_FOUND)
 	public @ResponseBody ExceptionResponse recordException(final ResourceNotFoundException exception,
 																  final HttpServletRequest request) {
