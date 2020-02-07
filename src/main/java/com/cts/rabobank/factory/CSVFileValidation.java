@@ -1,6 +1,7 @@
 package com.cts.rabobank.factory;
 
 
+import com.cts.rabobank.exception.RecordException;
 import com.cts.rabobank.model.RequestRecord;
 import com.opencsv.CSVReader;
 import com.opencsv.bean.ColumnPositionMappingStrategy;
@@ -14,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.FileReader;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -43,11 +45,19 @@ public class CSVFileValidation implements FileValidation {
 
             CsvToBean<RequestRecord> csvToBean = new CsvToBean<RequestRecord>();
 
-            recordList = csvToBean.parse(beanStrategy, reader);
+            csvToBean.setMappingStrategy(beanStrategy);
+            csvToBean.setCsvReader(reader);
+            List<RequestRecord> records = csvToBean.parse();
+            recordList=new ArrayList<RequestRecord>();
+            for(RequestRecord requestRecord:records){
+                requestRecord.checkBalanceValidation();
+                recordList.add(requestRecord);
 
-            System.out.println(recordList);
+            }
+
         }catch(Exception e){
 
+            //throw new RecordException(e.getMessage());
         }
         return recordList;
     }

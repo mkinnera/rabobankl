@@ -1,6 +1,7 @@
 package com.cts.rabobank.factory;
 
 
+import com.cts.rabobank.exception.RecordException;
 import com.cts.rabobank.model.RequestRecord;
 import com.cts.rabobank.model.RequestRecords;
 import lombok.extern.slf4j.Slf4j;
@@ -27,6 +28,7 @@ public class XMLValidation implements FileValidation {
         }catch (Exception e){
             log.error("XMLValidation::{}",e.getMessage());
             e.printStackTrace();
+            //throw new RecordException(e.getMessage());
 
         }
         return recordList;
