@@ -8,8 +8,13 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.web.multipart.MultipartFile;
 
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 
 import static org.mockito.Mockito.when;
 
@@ -26,8 +31,12 @@ public class XMLValidationTest {
     }
 
     @Test
-    public void processTest() throws RecordParseException {
-        String contentType = "text/csv";
+    public void processTest() throws Exception {
+        //String contentType = "text/csv";
+        File csvFile = new File(this.getClass().getResource("/records.xml").getFile());
+        InputStream is = new FileInputStream(csvFile);
+        MockMultipartFile multipartFile = new MockMultipartFile("xml", "records.xml", "text/xml", is);
+        is.close();
         xmlValidation.processFile(multipartFile);
 
     }
