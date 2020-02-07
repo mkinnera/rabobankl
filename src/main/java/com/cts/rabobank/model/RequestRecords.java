@@ -14,7 +14,10 @@ public class RequestRecords {
     private List<RequestRecord> records = null;
 
     public List<RequestRecord> getRecords() {
-        return records;
+
+        for (RequestRecord record:records) {
+            record.checkBalanceValidation();
+        }        return records;
     }
 
     public void setRecords(List<RequestRecord> records) {

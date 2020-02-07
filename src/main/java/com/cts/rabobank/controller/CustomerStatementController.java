@@ -1,12 +1,15 @@
 package com.cts.rabobank.controller;
 
 import com.cts.rabobank.exception.RecordException;
+import com.cts.rabobank.model.RequestRecord;
 import com.cts.rabobank.model.ResponseRecord;
 import com.cts.rabobank.service.CustomerStatementProcessorService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/v1")
@@ -16,7 +19,7 @@ public class CustomerStatementController {
     CustomerStatementProcessorService customerStatementProcessorService;
 
     @PostMapping(value = "/rabobank")
-    public ResponseRecord customerStatementProcessor(@RequestParam("file") MultipartFile multipartFile) throws Exception{
+    public List<RequestRecord> customerStatementProcessor(@RequestParam("file") MultipartFile multipartFile) throws Exception{
 
         if (multipartFile != null) {
             String contentType = multipartFile.getContentType();
