@@ -46,7 +46,7 @@ public class CustomerStatementControllerTest {
         try {
             File csvFile = new File(this.getClass().getResource("/records.csv").getFile());
             InputStream is = new FileInputStream(csvFile);
-            MockMultipartFile multipartFile = new MockMultipartFile("csv", "records.csv", "application/octet-stream", is);
+            MockMultipartFile multipartFile = new MockMultipartFile("csv", "records.csv", "text/csv", is);
             is.close();
             customerStatementController.customerStatementProcessor(multipartFile);
         }catch (Exception e) {
