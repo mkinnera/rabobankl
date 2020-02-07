@@ -12,7 +12,7 @@ import java.text.NumberFormat;
 public class RequestRecord {
 	@XmlAttribute(name = "reference")
 	private int transactionRef;
-	private String accountNum;
+	private String accountNumber;
 	private double startBalance;
 	private double mutation;
 	private String description;
@@ -38,12 +38,11 @@ public class RequestRecord {
 	public void setStartBalance(double startBalance) {
 		this.startBalance = startBalance;
 	}
-	@XmlElement(name="accountNumber")
-	public String getAccountNum() {
-		return accountNum;
+	public String getAccountNumber() {
+		return accountNumber;
 	}
-	public void setAccountNum(String accountNum) {
-		this.accountNum = accountNum;
+	public void setAccountNumber(String accountNumber) {
+		this.accountNumber = accountNumber;
 	}
 	public double getMutation() {
 		return mutation;
