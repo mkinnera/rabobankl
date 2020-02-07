@@ -1,4 +1,4 @@
-package com.cts.customer_statement_service.controller;
+package com.cts.customer_statement.controller;
 
 
 import org.slf4j.Logger;
