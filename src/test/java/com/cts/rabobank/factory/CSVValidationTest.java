@@ -9,13 +9,10 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.web.multipart.MultipartFile;
 
-
-import static org.mockito.Mockito.when;
-
 @RunWith(MockitoJUnitRunner.class)
-public class XMLValidationTest {
+public class CSVValidationTest {
     @InjectMocks
-    XMLValidation xmlValidation;
+    CSVFileValidation csvFileValidation;
     @Mock
     MultipartFile multipartFile;
 
@@ -27,7 +24,7 @@ public class XMLValidationTest {
     @Test
     public void processTest() {
         String contentType = "text/csv";
-        xmlValidation.processFile(multipartFile);
+        csvFileValidation.processFile(multipartFile);
 
     }
 }
