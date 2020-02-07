@@ -3,6 +3,7 @@ package com.cts.rabobank.factory;
 
 import com.cts.rabobank.exception.RecordParseException;
 import com.cts.rabobank.model.RequestRecord;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -14,11 +15,10 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Component
+@Slf4j
 public class FileValidationFactory {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(FileValidationFactory.class);
-
-  public  List<RequestRecord>  processFile(MultipartFile multipartFile, String contentType ){
+  public  List<RequestRecord>  processFile(MultipartFile multipartFile, String contentType ) throws RecordParseException {
         FileValidation fileValidation=null;
         List<RequestRecord> recordList=null;
         try {
@@ -36,7 +36,8 @@ public class FileValidationFactory {
                 }
             }
         }catch(Exception e){
-           e.printStackTrace();
+            log.error(e.getMessage());
+            throw new RecordParseException(e.getMessage());
         }
         return recordList;
     }

@@ -44,7 +44,7 @@ public class CSVFileValidation implements FileValidation {
             csvToBean.setMappingStrategy(beanStrategy);
             csvToBean.setCsvReader(reader);
             List<RequestRecord> records = csvToBean.parse();
-            recordList=new ArrayList<RequestRecord>();
+            recordList=new ArrayList<>();
             for(RequestRecord requestRecord:records){
                 requestRecord.checkBalanceValidation();
                 recordList.add(requestRecord);
