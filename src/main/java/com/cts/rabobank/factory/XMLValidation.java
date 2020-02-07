@@ -14,7 +14,6 @@ import java.util.List;
 @Component
 @Slf4j
 public class XMLValidation implements FileValidation {
-
     public List<RequestRecord> processFile(MultipartFile multipartFile){
         List<RequestRecord> recordList=null;
         try {

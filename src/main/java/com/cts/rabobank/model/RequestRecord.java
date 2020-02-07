@@ -16,16 +16,16 @@ public class RequestRecord {
 	@XmlAttribute(name = "reference")
 	private int transactionRef;
 	private String accountNum;
-	private Long startBalance;
-	private Long mutation;
+	private double startBalance;
+	private double mutation;
 	private String description;
-	private Long endBalance;
+	private double endBalance;
 	private boolean isValid;
 
 	private static final NumberFormat formatter = new DecimalFormat("#0.00");
 
 	public void checkBalanceValidation(){
-		this.isValid=Long.parseLong(formatter.format((this.getStartBalance() + this.getMutation()))) == Long.parseLong(formatter.format(this.getEndBalance()));
+		this.isValid=Double.parseDouble(formatter.format((this.getStartBalance() + this.getMutation()))) == Double.parseDouble(formatter.format(this.getEndBalance()));
 	}
 
 
@@ -35,10 +35,10 @@ public class RequestRecord {
 	public void setTransactionRef(int transactionRef) {
 		this.transactionRef = transactionRef;
 	}
-	public Long getStartBalance() {
+	public double getStartBalance() {
 		return startBalance;
 	}
-	public void setStartBalance(Long startBalance) {
+	public void setStartBalance(double startBalance) {
 		this.startBalance = startBalance;
 	}
 	public String getAccountNum() {
@@ -47,16 +47,16 @@ public class RequestRecord {
 	public void setAccountNum(String accountNum) {
 		this.accountNum = accountNum;
 	}
-	public Long getMutation() {
+	public double getMutation() {
 		return mutation;
 	}
-	public void setMutation(Long mutation) {
+	public void setMutation(double mutation) {
 		this.mutation = mutation;
 	}
-	public Long getEndBalance() {
+	public double getEndBalance() {
 		return endBalance;
 	}
-	public void setEndBalance(Long endBalance) {
+	public void setEndBalance(double endBalance) {
 		this.endBalance = endBalance;
 	}
 	public String getDescription() {
