@@ -97,6 +97,15 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+
+        <plugin>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <configuration>
+                <excludes>com/yapstone/rest/payinsvcs/service/bo/*</excludes>
+                <excludes>**/*Test*.java</excludes>
+            </configuration>
+        </plugin>
         </plugins>
     </build>
 

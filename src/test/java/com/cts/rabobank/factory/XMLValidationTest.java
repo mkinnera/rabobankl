@@ -1,6 +1,4 @@
-package com.cts.rabobank.controller;
-
-import static org.mockito.Mockito.when;
+package com.cts.rabobank.factory;
 
 import com.cts.rabobank.factory.FileValidationFactory;
 import com.cts.rabobank.model.RequestRecord;
@@ -16,12 +14,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
+import static org.mockito.Mockito.when;
+
 @RunWith(MockitoJUnitRunner.class)
-public class CustomerStatementControllerTest {
+public class XMLValidationTest {
     @InjectMocks
-    CustomerStatementProcessorService customerStatementProcessorService;
-    @Mock
-    FileValidationFactory fileValidationFactory;
+    XMLValidation xmlValidation;
     @Mock
     MultipartFile multipartFile;
 
@@ -33,8 +31,7 @@ public class CustomerStatementControllerTest {
     @Test
     public void processTest() {
         String contentType = "text/csv";
-        when(fileValidationFactory.processFile(multipartFile, contentType)).thenReturn(null);
-        List<RequestRecord> requestRecords = customerStatementProcessorService.process(multipartFile, contentType);
-    System.out.println(requestRecords);
+        xmlValidation.processFile(multipartFile);
+
     }
 }

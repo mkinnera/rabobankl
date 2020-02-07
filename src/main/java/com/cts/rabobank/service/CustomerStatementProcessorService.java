@@ -2,7 +2,6 @@ package com.cts.rabobank.service;
 
 import com.cts.rabobank.factory.FileValidationFactory;
 import com.cts.rabobank.model.RequestRecord;
-import com.cts.rabobank.model.ResponseRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;

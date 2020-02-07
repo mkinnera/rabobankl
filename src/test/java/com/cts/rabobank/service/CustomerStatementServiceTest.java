@@ -1,6 +1,4 @@
-package com.cts.rabobank.controller;
-
-import static org.mockito.Mockito.when;
+package com.cts.rabobank.service;
 
 import com.cts.rabobank.factory.FileValidationFactory;
 import com.cts.rabobank.model.RequestRecord;
@@ -16,8 +14,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
+import static org.mockito.Mockito.when;
+
 @RunWith(MockitoJUnitRunner.class)
-public class CustomerStatementControllerTest {
+public class CustomerStatementServiceTest {
     @InjectMocks
     CustomerStatementProcessorService customerStatementProcessorService;
     @Mock
