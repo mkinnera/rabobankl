@@ -1,6 +1,7 @@
 package com.cts.rabobank.factory;
 
 
+import com.cts.rabobank.exception.RecordException;
 import com.cts.rabobank.model.RequestRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,15 +21,22 @@ public class FileValidationFactory {
   public  List<RequestRecord>  processFile(MultipartFile multipartFile, String contentType ){
         FileValidation fileValidation=null;
         List<RequestRecord> recordList=null;
-        if(contentType.equals("text/csv")){
-            fileValidation=new CSVFileValidation();
-        }else{
-            fileValidation=new XMLValidation();
-        }
-        if(fileValidation!=null) {
-          //  recordList = generateReport(fileValidation.processFile(multipartFile));
-            recordList = fileValidation.processFile(multipartFile);
-
+        try {
+            if (contentType.equals("text/csv")) {
+                fileValidation = new CSVFileValidation();
+            } else {
+                fileValidation = new XMLValidation();
+            }
+            if (fileValidation != null) {
+                recordList = fileValidation.processFile(multipartFile);
+                if (recordList != null && recordList.size() > 0) {
+                    return generateReport(recordList);
+                } else {
+                    throw new RecordException(" Invalid data in the file");
+                }
+            }
+        }catch(Exception e){
+           e.printStackTrace();
         }
         return recordList;
     }
