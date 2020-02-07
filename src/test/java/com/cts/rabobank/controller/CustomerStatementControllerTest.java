@@ -23,6 +23,7 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -51,9 +52,17 @@ public class CustomerStatementControllerTest {
             InputStream is = new FileInputStream(csvFile);
             MockMultipartFile multipartFile = new MockMultipartFile("csv", "records.csv", "text/csv", is);
             is.close();
-
+            List<RequestRecord> records = new ArrayList<>();
+            RequestRecord record=new RequestRecord();
+            record.setAccountNumber("NL27SNSB0917829871");
+            record.setTransactionRef(112806);
+            record.setDescription("Clothes for Willem Dekker");
+            record.setStartBalance(91.23);
+            record.setMutation(15.57);
+            record.setEndBalance(33.5);
+            records.add(record);
             List<RequestRecord> list=customerStatementController.customerStatementProcessor(multipartFile);
-
+            Assert.assertEquals(1, list.size());
 
         }catch (Exception e) {
 
