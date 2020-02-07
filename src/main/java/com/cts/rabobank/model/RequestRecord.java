@@ -11,11 +11,17 @@ import java.text.NumberFormat;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class RequestRecord {
 	@XmlAttribute(name = "reference")
+	@JsonProperty(value="Reference")
 	private int transactionRef;
+	@JsonProperty(value="Account Number")
 	private String accountNumber;
+	@JsonProperty(value="Start Balance")
 	private double startBalance;
+	@JsonProperty(value="Mutation")
 	private double mutation;
+	@JsonProperty(value="Description")
 	private String description;
+	@JsonProperty(value="End Balance")
 	private double endBalance;
 	private boolean isValid;
 
