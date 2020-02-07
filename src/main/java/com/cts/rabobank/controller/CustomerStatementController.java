@@ -1,8 +1,7 @@
 package com.cts.rabobank.controller;
 
-import com.cts.rabobank.exception.RecordException;
+import com.cts.rabobank.exception.RecordParseException;
 import com.cts.rabobank.model.RequestRecord;
-import com.cts.rabobank.model.ResponseRecord;
 import com.cts.rabobank.service.CustomerStatementProcessorService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +26,7 @@ public class CustomerStatementController {
             if (contentType != null && (contentType.equals("text/xml") || contentType.equals("text/csv"))) {
                return customerStatementProcessorService.process(multipartFile, contentType);
             } else {
-                throw new RecordException("Invalid file format exception");
+                throw new RecordParseException("Invalid file format exception");
             }
         }
         return null;

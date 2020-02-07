@@ -1,5 +1,6 @@
 package com.cts.rabobank.factory;
 
+import com.cts.rabobank.exception.RecordParseException;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,7 +23,7 @@ public class CSVValidationTest {
     }
 
     @Test
-    public void processTest() {
+    public void processTest() throws RecordParseException {
         String contentType = "text/csv";
         csvFileValidation.processFile(multipartFile);
     }

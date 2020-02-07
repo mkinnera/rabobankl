@@ -1,7 +1,7 @@
 package com.cts.rabobank.factory;
 
 
-import com.cts.rabobank.exception.RecordException;
+import com.cts.rabobank.exception.RecordParseException;
 import com.cts.rabobank.model.RequestRecord;
 import com.cts.rabobank.model.RequestRecords;
 import lombok.extern.slf4j.Slf4j;
@@ -15,7 +15,7 @@ import java.util.List;
 @Component
 @Slf4j
 public class XMLValidation implements FileValidation {
-    public List<RequestRecord> processFile(MultipartFile multipartFile){
+    public List<RequestRecord> processFile(MultipartFile multipartFile) throws RecordParseException {
         List<RequestRecord> recordList=null;
         try {
 
@@ -28,7 +28,7 @@ public class XMLValidation implements FileValidation {
         }catch (Exception e){
             log.error("XMLValidation::{}",e.getMessage());
             e.printStackTrace();
-            //throw new RecordException(e.getMessage());
+            throw new RecordParseException(e.getMessage());
 
         }
         return recordList;

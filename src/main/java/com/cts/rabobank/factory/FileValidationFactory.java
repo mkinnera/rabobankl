@@ -1,7 +1,7 @@
 package com.cts.rabobank.factory;
 
 
-import com.cts.rabobank.exception.RecordException;
+import com.cts.rabobank.exception.RecordParseException;
 import com.cts.rabobank.model.RequestRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,7 +32,7 @@ public class FileValidationFactory {
                 if (recordList != null && recordList.size() > 0) {
                     return generateReport(recordList);
                 } else {
-                    throw new RecordException(" Invalid data in the file");
+                    throw new RecordParseException(" Invalid data in the file");
                 }
             }
         }catch(Exception e){

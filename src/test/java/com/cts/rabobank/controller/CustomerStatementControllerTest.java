@@ -13,8 +13,12 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -40,6 +44,10 @@ public class CustomerStatementControllerTest {
         restTemplate.getForEntity(
                 new URL("http://localhost:" + port + "/v1/rabobank").toString(), String.class);
         try {
+            File csvFile = new File(this.getClass().getResource("/records.csv").getFile());
+            InputStream is = new FileInputStream(csvFile);
+            MockMultipartFile multipartFile = new MockMultipartFile("csv", "records.csv", "application/octet-stream", is);
+            is.close();
             customerStatementController.customerStatementProcessor(multipartFile);
         }catch (Exception e) {
 
