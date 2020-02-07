@@ -11,17 +11,15 @@ import java.text.NumberFormat;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class RequestRecord {
 	@XmlAttribute(name = "reference")
-	@JsonProperty(value="Reference")
 	private int transactionRef;
-	@JsonProperty(value="Account Number")
+
 	private String accountNumber;
-	@JsonProperty(value="Start Balance")
 	private double startBalance;
-	@JsonProperty(value="Mutation")
+
 	private double mutation;
-	@JsonProperty(value="Description")
+
 	private String description;
-	@JsonProperty(value="End Balance")
+
 	private double endBalance;
 	private boolean isValid;
 
@@ -31,37 +29,44 @@ public class RequestRecord {
 		this.isValid=Double.parseDouble(formatter.format((this.getStartBalance() + this.getMutation()))) == Double.parseDouble(formatter.format(this.getEndBalance()));
 	}
 
-
+	@JsonProperty(value="Reference")
 	public int getTransactionRef() {
 		return transactionRef;
 	}
 	public void setTransactionRef(int transactionRef) {
 		this.transactionRef = transactionRef;
 	}
+	@JsonProperty(value="Start Balance")
 	public double getStartBalance() {
 		return startBalance;
 	}
 	public void setStartBalance(double startBalance) {
 		this.startBalance = startBalance;
 	}
+
+	@JsonProperty(value="Account Number")
 	public String getAccountNumber() {
 		return accountNumber;
 	}
 	public void setAccountNumber(String accountNumber) {
 		this.accountNumber = accountNumber;
 	}
+	@JsonProperty(value="Mutation")
 	public double getMutation() {
 		return mutation;
 	}
 	public void setMutation(double mutation) {
 		this.mutation = mutation;
 	}
+	@JsonProperty(value="End Balance")
 	public double getEndBalance() {
 		return endBalance;
 	}
+
 	public void setEndBalance(double endBalance) {
 		this.endBalance = endBalance;
 	}
+	@JsonProperty(value="Description")
 	public String getDescription() {
 		return description;
 	}
