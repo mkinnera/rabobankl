@@ -3,8 +3,7 @@ package com.cts.rabobank.factory;
 
 import com.cts.rabobank.model.RequestRecord;
 import com.cts.rabobank.model.RequestRecords;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -13,9 +12,8 @@ import javax.xml.bind.Unmarshaller;
 import java.util.List;
 
 @Component
+@Slf4j
 public class XMLValidation implements FileValidation {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(CSVFileValidation.class);
 
     public List<RequestRecord> processFile(MultipartFile multipartFile){
         List<RequestRecord> recordList=null;
@@ -25,10 +23,10 @@ public class XMLValidation implements FileValidation {
             Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
             RequestRecords records = (RequestRecords) unmarshaller.unmarshal(multipartFile.getInputStream());
             recordList=records.getRecords();
-            LOGGER.debug("XMLValidation ::recordList::{}",recordList);
+            log.debug("XMLValidation ::recordList::{}",recordList);
 
         }catch (Exception e){
-            LOGGER.error("XMLValidation::{}",e.getMessage());
+            log.error("XMLValidation::{}",e.getMessage());
             e.printStackTrace();
 
         }
