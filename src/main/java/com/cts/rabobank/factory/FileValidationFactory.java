@@ -29,7 +29,7 @@ public class FileValidationFactory {
             }
             if (fileValidation != null) {
                 recordList = fileValidation.processFile(multipartFile);
-                if (recordList != null && recordList.size() > 0) {
+                if (recordList != null && !recordList.isEmpty()) {
                     return generateReport(recordList);
                 } else {
                     throw new RecordParseException(" Invalid data in the file");

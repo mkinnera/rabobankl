@@ -1,5 +1,6 @@
 package com.cts.rabobank.service;
 
+import com.cts.rabobank.exception.RecordParseException;
 import com.cts.rabobank.factory.FileValidationFactory;
 import com.cts.rabobank.model.RequestRecord;
 import org.junit.Before;
@@ -31,7 +32,7 @@ public class CustomerStatementServiceTest {
     }
 
     @Test
-    public void processTest() {
+    public void processTest() throws RecordParseException {
         String contentType = "text/csv";
         String fileName = "test.csv";
         MockMultipartFile mockMultipartFile = new MockMultipartFile("user-file",fileName, "text/csv", "test data".getBytes());

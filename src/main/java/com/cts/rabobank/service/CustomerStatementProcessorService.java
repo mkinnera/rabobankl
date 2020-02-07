@@ -1,5 +1,6 @@
 package com.cts.rabobank.service;
 
+import com.cts.rabobank.exception.RecordParseException;
 import com.cts.rabobank.factory.FileValidationFactory;
 import com.cts.rabobank.model.RequestRecord;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ import java.util.List;
 public class CustomerStatementProcessorService {
     @Autowired
     FileValidationFactory fileValidationFactory;
-    public List<RequestRecord> process(MultipartFile multipartFile, String contentType){
+    public List<RequestRecord> process(MultipartFile multipartFile, String contentType) throws RecordParseException {
         return fileValidationFactory.processFile(multipartFile,contentType);
     }
 }
