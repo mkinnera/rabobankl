@@ -1,5 +1,7 @@
 package com.cts.rabobank.factory;
 
+import com.cts.rabobank.model.RequestRecord;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.List;
 
 @RunWith(MockitoJUnitRunner.class)
 public class FileValidationFactoryTest {
@@ -34,7 +37,9 @@ public class FileValidationFactoryTest {
         MockMultipartFile multipartFile = new MockMultipartFile("xml", "records.xml", "text/xml", is);
         is.close();
 
-        fileValidationFactory.processFile(multipartFile, contentType);
+        List<RequestRecord> list=fileValidationFactory.processFile(multipartFile, contentType);
+        Assert.assertEquals(2,list.size());
+
     }
     @Test
     public void processTestForcsv() {
