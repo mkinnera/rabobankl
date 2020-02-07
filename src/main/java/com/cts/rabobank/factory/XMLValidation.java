@@ -17,7 +17,7 @@ public class XMLValidation implements FileValidation {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(XMLValidation.class);
 
-    public List<RequestRecord> processFile(MultipartFile multipartFile){
+    public List<RequestRecord> processFile(MultipartFile multipartFile)throws Exception{
         List<RequestRecord> recordList=null;
         try {
 
