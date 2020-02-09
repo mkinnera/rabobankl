@@ -1,6 +1,6 @@
 package com.cts.rabobank.factory;
 
-import com.cts.rabobank.model.RequestRecord;
+import com.cts.rabobank.model.ValidationRequest;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -37,8 +37,8 @@ public class FileValidationFactoryTest {
         MockMultipartFile multipartFile = new MockMultipartFile("xml", "records.xml", "text/xml", is);
         is.close();
 
-        List<RequestRecord> list=fileValidationFactory.processFile(multipartFile, contentType);
-        Assert.assertEquals(2,list.size());
+        List<ValidationRequest> list=fileValidationFactory.validateFile(multipartFile, contentType);
+        Assert.assertEquals(10,list.size());
 
     }
     @Test
@@ -48,8 +48,8 @@ public class FileValidationFactoryTest {
         InputStream is = new FileInputStream(csvFile);
         MockMultipartFile multipartFile = new MockMultipartFile("csv", "records.csv", "text/csv", is);
         is.close();
-        List<RequestRecord> list=fileValidationFactory.processFile(multipartFile, contentType);
-        Assert.assertEquals(2,list.size());
+        List<ValidationRequest> list=fileValidationFactory.validateFile(multipartFile, contentType);
+        Assert.assertEquals(10,list.size());
     }
 
 

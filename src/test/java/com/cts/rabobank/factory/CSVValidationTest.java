@@ -1,7 +1,6 @@
 package com.cts.rabobank.factory;
 
-import com.cts.rabobank.exception.RecordParseException;
-import com.cts.rabobank.model.RequestRecord;
+import com.cts.rabobank.model.ValidationRequest;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,7 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.List;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -39,7 +37,7 @@ public class CSVValidationTest {
         MockMultipartFile multipartFile = new MockMultipartFile("csv", "records.csv", "text/csv", is);
         is.close();
 
-        List<RequestRecord> list=csvFileValidation.processFile(multipartFile);
+        List<ValidationRequest> list=csvFileValidation.processFile(multipartFile);
         Assert.assertEquals(10, list.size());
     }
 }

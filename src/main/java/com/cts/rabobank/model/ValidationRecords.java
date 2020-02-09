@@ -8,19 +8,16 @@ import java.util.List;
 
 @XmlRootElement(name = "records")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class RequestRecords {
+public class ValidationRecords {
 
     @XmlElement(name = "record")
-    private List<RequestRecord> records = null;
+    private List<ValidationRequest> records = null;
 
-    public List<RequestRecord> getRecords() {
+    public List<ValidationRequest> getRecords() {
 
-        for (RequestRecord record:records) {
+        for (ValidationRequest record:records) {
             record.checkBalanceValidation();
         }        return records;
     }
 
-    public void setRecords(List<RequestRecord> records) {
-        this.records = records;
-    }
 }

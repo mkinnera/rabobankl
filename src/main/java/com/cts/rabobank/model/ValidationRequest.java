@@ -3,13 +3,16 @@ package com.cts.rabobank.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
 @XmlRootElement(name = "record")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class RequestRecord {
+public class ValidationRequest {
 	@XmlAttribute(name = "reference")
 	private int transactionRef;
 
@@ -44,10 +47,6 @@ public class RequestRecord {
 		this.startBalance = startBalance;
 	}
 
-	@JsonProperty(value="Account Number")
-	public String getAccountNumber() {
-		return accountNumber;
-	}
 	public void setAccountNumber(String accountNumber) {
 		this.accountNumber = accountNumber;
 	}
@@ -66,10 +65,7 @@ public class RequestRecord {
 	public void setEndBalance(double endBalance) {
 		this.endBalance = endBalance;
 	}
-	@JsonProperty(value="Description")
-	public String getDescription() {
-		return description;
-	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
@@ -80,7 +76,4 @@ public class RequestRecord {
 		return isValid;
 	}
 
-	public void setValid(boolean valid) {
-		isValid = valid;
-	}
 }
